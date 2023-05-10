@@ -1,5 +1,6 @@
 package org.java.biblio;
 import java.io.FileWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import org.java.biblio.Libro;
@@ -15,10 +16,11 @@ public class Biblioteca {
 		
 		Libro[] libri = new Libro[numeroLibri];
 		for(int i=0;i<=numeroLibri;i++) {
+			sc.nextLine();
 			System.out.print("titolo:");
 			String titolo = sc.nextLine();
 			
-			System.out.print("titolo:");
+			System.out.print("pagine:");
 			int pagine = sc.nextInt();
 			
 			sc.nextLine();
@@ -39,6 +41,19 @@ public class Biblioteca {
 			}
 		}
 		
+		try {
+			FileWriter myWriter = new FileWriter ("C:\\Users\\Nemesis_Mindu\\Documents\\Documenti\\libri");
+			
+			for (int i=0;i<=numeroLibri;i++) {
+				Libro l = libri[i];
+				myWriter.write(l.toString());
+			}
+			myWriter.close();
+		}catch (Exception e) {
+			System.err.println("Errore nella scrittura del file" + e.getMessage());
+		}
+		
+		System.out.println(Arrays.asList(libri));
 		
 	}
 
